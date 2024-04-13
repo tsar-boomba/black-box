@@ -9,7 +9,7 @@ import { Post } from '../../shared/index.ts';
 
 if (!isProduction) {
 	console.log('Clearing KV...');
-	for await (const entry of kv.list({ prefix: [''] })) {
+	for await (const entry of kv.list({ prefix: [] })) {
 		await kv.delete(entry.key);
 	}
 }

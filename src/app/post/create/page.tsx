@@ -197,7 +197,7 @@ export default function CreatePost() {
 
 					setSubmitting(true);
 					try {
-						const res = await fetch(BACKEND_URL + '/post', {
+						const res = await fetch(BACKEND_URL + '/posts', {
 							method: 'POST',
 							headers: {
 								'content-type': 'application/json',

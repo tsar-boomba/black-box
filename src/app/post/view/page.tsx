@@ -16,7 +16,7 @@ const getRandomInt = (min: number, max: number) => {
 };
 
 export default function ViewPost() {
-	const { data } = useSWR<Post[]>(BACKEND_URL + '/post', fetcher);
+	const { data } = useSWR<Post[]>(BACKEND_URL + '/posts', fetcher);
 
 	if (!data) {
 		return (
@@ -28,23 +28,38 @@ export default function ViewPost() {
 
 	const post = data[getRandomInt(0, data.length)];
 
+	if (!post) {
+		return (
+			<Stack align='center' p='md'>
+				<Text component='h1' ta='center' className={title}>
+					No posts
+				</Text>
+			</Stack>
+		);
+	}
+
 	return (
-		<Stack align='center'>
+		<Stack align='center' p='md'>
 			<Text component='h1' ta='center' className={title}>
-				By {(post as any).author}
+				By {post.author}
 			</Text>
 			<Text component='h1' ta='center' className={title}>
-				{(post as any).occupation}
+				{post.occupation}
 			</Text>
 
 			<Paper
+				p='md'
+				color='white'
 				dangerouslySetInnerHTML={{
 					__html: marked.parse(post.content) as string,
 				}}
 			/>
 
+			<Text component='h1' ta='center' className={title}>
+				Inspirational Quote
+			</Text>
 			<Text fz={rem(24)} ta='center'>
-				{post.quote}
+				<em>&quot;{post.quote}&quot;</em>
 			</Text>
 		</Stack>
 	);
