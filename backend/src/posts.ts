@@ -45,3 +45,4 @@ export const addPost = async (post: Omit<Post, 'id'>) => {
         throw new Error("Failed to add post");
 	}
 };
+
