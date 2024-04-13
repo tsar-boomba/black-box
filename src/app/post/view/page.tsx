@@ -48,6 +48,7 @@ export default function ViewPost() {
 			</Text>
 
 			<Paper
+				maw={600}
 				p='md'
 				color='white'
 				dangerouslySetInnerHTML={{

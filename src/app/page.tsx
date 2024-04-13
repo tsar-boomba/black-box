@@ -11,6 +11,7 @@ import {
 } from '@mantine/core';
 import { control, description, inner, title, wrapper } from './styles.css';
 import Link from 'next/link';
+import { Logo } from '@/components/Logo';
 
 export default function Home() {
 	const theme = useMantineTheme();
@@ -18,6 +19,9 @@ export default function Home() {
 	return (
 		<div className={wrapper}>
 			<Container size={700} className={inner}>
+				<Group justify='center'>
+					<Logo color='white' />
+				</Group>
 				<Stack align='center' justify='center'>
 					<Text
 						component='h1'
