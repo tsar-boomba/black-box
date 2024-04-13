@@ -7,6 +7,7 @@ import { getPosts } from './posts.ts';
 import { addPost } from './posts.ts';
 
 if (!isProduction) {
+	console.log('Clearing KV...');
 	for await (const entry of kv.list({ prefix: [''] })) {
 		await kv.delete(entry.key);
 	}
@@ -22,9 +23,7 @@ app.use(
 	}),
 );
 
-app.get('/', () => {
-	console.log("root")
-});
+app.get('/', () => 'hello world!');
 
 app.get('/posts', getPosts);
 
@@ -40,4 +39,6 @@ app.post('/posts', (rev) => {
 	return addPost(rev.body.string)
 });
 
-app.listen(8000);
+app.listen(8000, () => {
+	console.log('Listening on http://localhost:8000');
+});

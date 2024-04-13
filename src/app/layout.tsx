@@ -1,7 +1,10 @@
 'use client';
 
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/tiptap/styles.css';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { ReactNode } from 'react';
 import { Layout } from '@/components/Layout';
 import { ModalsProvider } from '@mantine/modals';
@@ -11,17 +14,17 @@ const MyApp = ({ children }: { children?: ReactNode }) => {
 	return (
 		<html>
 			<head>
-				<ColorSchemeScript defaultColorScheme='auto' />
+				<ColorSchemeScript
+					defaultColorScheme='light'
+					forceColorScheme='light'
+				/>
 				<title>Black Box</title>
 				<meta name='title' content='Black Box' />
 				<meta
 					name='description'
 					content='A platform for black students in STEM to empower each other.'
 				/>
-				<link
-					rel='icon'
-					href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💣</text></svg>'
-				/>
+				<link rel='icon' href='/cube.svg' type='image/svg+xml' />
 
 				<meta property='og:type' content='website' />
 				<meta property='og:url' content='https://black-box.igamble.dev/' />
@@ -49,9 +52,14 @@ const MyApp = ({ children }: { children?: ReactNode }) => {
 			</head>
 
 			<body>
-				<MantineProvider defaultColorScheme='auto' theme={theme}>
+				<MantineProvider
+					defaultColorScheme='light'
+					forceColorScheme='light'
+					theme={theme}
+				>
 					<ModalsProvider>
 						<Layout>{children}</Layout>
+						<Notifications />
 					</ModalsProvider>
 				</MantineProvider>
 			</body>
