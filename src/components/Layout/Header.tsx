@@ -7,13 +7,9 @@ import {
 	useMantineTheme,
 	Collapse,
 	Paper,
-	ActionIcon,
-	Title,
-	Tooltip,
 } from '@mantine/core';
 import { useToggle } from '@mantine/hooks';
 import { ThemeToggle } from './ThemeToggle';
-import { openModal } from '@mantine/modals';
 import {
 	desktopOnly,
 	header,
