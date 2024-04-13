@@ -19,7 +19,7 @@ app.use(
 	}),
 );
 
-app.get('/', () => {});
+app.get('/', () => "Hello, World");
 
 app.get('/post', () => {});
 
