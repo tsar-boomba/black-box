@@ -2,7 +2,7 @@ import nhttp from 'https://deno.land/x/nhttp@1.3.25/mod.ts';
 import { cors } from './deps.ts';
 import { isProduction } from './utils.ts';
 import { kv } from './kv.ts';
-import { getPost } from './posts.ts';
+import { deletePost, getPost } from './posts.ts';
 import { getPosts } from './posts.ts';
 import { addPost } from './posts.ts';
 
@@ -39,5 +39,10 @@ app.post('/posts', (rev) => {
 	console.log(rev.body)
 	return addPost(rev.body.string)
 });
+app.delete('/posts/:id', (rev) => {
+	console.log(rev.params.id)
+	deletePost(rev.params.id)
+	return "removed"
+})
 
 app.listen(8000);
