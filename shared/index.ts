@@ -6,6 +6,8 @@ export type Post = {
 	id: string;
 	content: string;
 	quote: string;
+	author: string;
+	occupation: string;
 	/**
 	 * ISO formatted date
 	 */
