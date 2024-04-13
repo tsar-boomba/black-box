@@ -12,13 +12,11 @@ import { Markdown } from 'tiptap-markdown';
 import {
 	Button,
 	Group,
-	MantineProvider,
 	Paper,
 	Stack,
 	Text,
 	TextInput,
 	Textarea,
-	Title,
 	rem,
 	useMantineTheme,
 } from '@mantine/core';
@@ -28,6 +26,7 @@ import { title } from '../styles.css';
 import { BACKEND_URL } from '@/utils/consts';
 import { Post } from '../../../../shared';
 import { useRouter } from 'next/navigation';
+import { notifications } from '@mantine/notifications';
 
 const QUOTE_LIMIT = 60;
 
@@ -190,6 +189,7 @@ export default function CreatePost() {
 			<Button
 				fz={rem(20)}
 				c='gray'
+				loading={submitting}
 				onClick={async () => {
 					const content = editor?.storage.markdown.getMarkdown() as string;
 					console.log(content);
@@ -203,7 +203,7 @@ export default function CreatePost() {
 								'content-type': 'application/json',
 							},
 							body: JSON.stringify({
-								content,
+								content: content.trim(),
 								quote,
 								author,
 								occupation,
@@ -213,6 +213,10 @@ export default function CreatePost() {
 						if (!res.ok) {
 							console.error('Req failed!');
 						} else {
+							notifications.show({
+								title: 'Post Created!',
+								message: 'Thanks for contributing.'
+							});
 							// Success, now go to somewhere else
 							router.push('/');
 						}

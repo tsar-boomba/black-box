@@ -33,7 +33,7 @@ export default function Home() {
 					</Text>
 					<Text className={description} c='white'>
 						An open mentorship platform connecting High-School students with
-						peers and mentors.
+						peers and professionals.
 					</Text>
 					<Group>
 						<Button
