@@ -150,7 +150,7 @@ export default function CreatePost() {
 				Inspire
 			</Text>
 
-			<Group>
+			<Group justify='center' align='center'>
 				<TextInput
 					label='Author'
 					value={author}
