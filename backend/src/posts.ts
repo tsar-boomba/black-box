@@ -41,4 +41,8 @@ export const addPost = async (post: Omit<Post, 'id' | 'createdAt'>) => {
         throw new Error("Failed to add post");
 	}
 };
-
+export const deletePost = async (
+	id: string,
+) => {
+	await kv.delete(['post', id])
+}
