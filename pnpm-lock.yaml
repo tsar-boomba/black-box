@@ -15,7 +15,7 @@ dependencies:
     specifier: 7.8.0
     version: 7.8.0(@mantine/core@7.8.0)(@mantine/hooks@7.8.0)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/notifications':
-    specifier: ^7.8.0
+    specifier: 7.8.0
     version: 7.8.0(@mantine/core@7.8.0)(@mantine/hooks@7.8.0)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/tiptap':
     specifier: 7.8.0
@@ -30,7 +30,7 @@ dependencies:
     specifier: 2.3.0
     version: 2.3.0(@tiptap/core@2.3.0)(@tiptap/extension-text-style@2.3.0)
   '@tiptap/extension-highlight':
-    specifier: ^2.3.0
+    specifier: 2.3.0
     version: 2.3.0(@tiptap/core@2.3.0)
   '@tiptap/extension-link':
     specifier: 2.3.0
@@ -42,7 +42,7 @@ dependencies:
     specifier: 2.3.0
     version: 2.3.0(@tiptap/core@2.3.0)
   '@tiptap/extension-text-align':
-    specifier: ^2.3.0
+    specifier: 2.3.0
     version: 2.3.0(@tiptap/core@2.3.0)
   '@tiptap/extension-text-style':
     specifier: 2.3.0
