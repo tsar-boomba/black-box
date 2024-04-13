@@ -11,7 +11,7 @@
 Run locally with:
 
 ```bash
-deno run dev
+deno task dev
 ```
 
 ## To-Do

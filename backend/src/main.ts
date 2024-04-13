@@ -2,6 +2,10 @@ import nhttp from 'https://deno.land/x/nhttp@1.3.25/mod.ts';
 import { cors } from './deps.ts';
 import { isProduction } from './utils.ts';
 import { kv } from './kv.ts';
+import { getPost } from './posts.ts';
+import { getPosts } from './posts.ts';
+import { addPost } from './posts.ts';
+import { Post } from '../../shared/index.ts';
 
 if (!isProduction) {
 	console.log('Clearing KV...');
@@ -22,11 +26,18 @@ app.use(
 
 app.get('/', () => 'hello world!');
 
-app.get('/post', () => {});
+app.get('/posts', async () => {
+	const posts = await getPosts();
+	return posts.map(({ value }) => value);
+});
 
-app.get('/post/:id', () => {});
+app.get('/posts/:id', (req) => {
+	return getPost(req.params.id);
+});
 
-app.post('/post', () => {});
+app.post('/posts', (rev) => {
+	return addPost(rev.body as Omit<Post, 'id' | 'createdAt'>);
+});
 
 app.listen(8000, () => {
 	console.log('Listening on http://localhost:8000');
