@@ -5,6 +5,7 @@ import { kv } from './kv.ts';
 import { getPost } from './posts.ts';
 import { getPosts } from './posts.ts';
 import { addPost } from './posts.ts';
+import { Post } from '../../shared/index.ts';
 
 if (!isProduction) {
 	console.log('Clearing KV...');
@@ -25,18 +26,17 @@ app.use(
 
 app.get('/', () => 'hello world!');
 
-app.get('/posts', getPosts);
+app.get('/posts', async () => {
+	const posts = await getPosts();
+	return posts.map(({ value }) => value);
+});
 
-app.get('/posts/:id', (req,res) => {
-	let id = req.params.id
-	//getPost(rev.body.string);
-	console.log(id)
-	return getPost(id)
+app.get('/posts/:id', (req) => {
+	return getPost(req.params.id);
 });
 
 app.post('/posts', (rev) => {
-	console.log(rev.body)
-	return addPost(rev.body.string)
+	return addPost(rev.body as Omit<Post, 'id' | 'createdAt'>);
 });
 
 app.listen(8000, () => {

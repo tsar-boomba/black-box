@@ -19,7 +19,7 @@ export const getPost = async (
 	return entry.versionstamp !== null ? entry : undefined;
 };
 
-export const addPost = async (post: Omit<Post, 'id'>) => {
+export const addPost = async (post: Omit<Post, 'id' | 'createdAt'>) => {
 	try {
 		let id = cuid();
 
@@ -27,19 +27,15 @@ export const addPost = async (post: Omit<Post, 'id'>) => {
 			// Post with id already exists, create new id
 			id = cuid();
 		}
-		const createdAt = new Date().toISOString();
 
         // Create the post object with the generated ID and current timestamp
         const newPost: Post = {
             id,
+			createdAt: new Date().toISOString(),
             ...post,
-            createdAt,
         };
 
-        // Save the post to the key-value store
-        await kv.set(['post', id], newPost);
-
-		return kv.set(['post', id], { id, ...post } satisfies Post);
+		return kv.set(['post', id], newPost);
 	} catch {
 		console.error("Error adding post:", Error);
         throw new Error("Failed to add post");
