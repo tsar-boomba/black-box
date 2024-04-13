@@ -27,4 +27,6 @@ app.get('/post/:id', () => {});
 
 app.post('/post', () => {});
 
-app.listen(8080);
+app.listen(8080, () => {
+	console.log('Listening on http://localhost:8080');
+});
